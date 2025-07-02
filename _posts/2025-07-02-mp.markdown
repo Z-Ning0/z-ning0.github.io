@@ -1,7 +1,9 @@
 ---
 layout:       post
 title:        "JavaScript事件循环机制详解"
-author:       "前端开发者"
+subtitle:     "深入解析Event Loop与异步执行原理"
+data:         2025-07-02 13:30:00
+author:       "ZNing"
 header-style: text
 catalog:      true
 tags:

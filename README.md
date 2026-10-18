@@ -1,63 +1,38 @@
-[Hux Blog](https://huangxuan.me)
-================================
+# 阿柠下班了吗
 
-> I never expected this to become popular.
+个人站源码。线上地址：**https://ningcraft.com/**
 
-![](http://huangxuan.me/img/blog-desktop.jpg)
+一个纯静态、自包含的门面页——没有框架、没有构建工具、没有外部 CDN 依赖，两个 HTML 文件就是全部。
 
+## 结构
 
-[User Manual 👉](_doc/Manual.md)
---------------------------------------------------
-
-### Getting Started
-
-1. You will need [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/) to use [Jekyll](https://jekyllrb.com/). Following [Using Jekyll with Bundler](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/) to fullfill the enviromental requirement.
-
-2. Installed dependencies in the `Gemfile`:
-
-```sh
-$ bundle install 
+```
+site/
+├── index.html          # 门面（状态行 / 配色开关 / 终端彩蛋）
+└── 404.html            # 这个页面下班了
+.github/workflows/
+└── pages.yml           # push 到 master → 部署 site/ 到 GitHub Pages
+CNAME                   # ningcraft.com（自定义域名，别删）
 ```
 
-3. Serve the website (`localhost:4000` by default):
+## 本地预览
 
-```sh
-$ bundle exec jekyll serve  # alternatively, npm start
+```bash
+cd site
+python -m http.server 8000
+# 打开 http://127.0.0.1:8000/
 ```
 
-### Development (Build From Source)
+## 部署
 
-To modify the theme, you will need [Grunt](https://gruntjs.com/). There are numbers of tasks you can find in the `Gruntfile.js`, includes minifing JavaScript, compiling `.less` to `.css`, adding banners to keep the Apache 2.0 license intact, watching for changes, etc. 
+推送到 `master` 即自动部署，无需手动操作：
 
-Yes, they were inherited and are extremely old-fashioned. There is no modularization and transpilation, etc.
+```bash
+git add -A && git commit -m "feat(site): ..." && git push
+```
 
-Critical Jekyll-related code are located in `_include/` and `_layouts/`. Most of them are [Liquid](https://github.com/Shopify/liquid/wiki) templates.
+Actions 跑完（约 1 分钟）后线上生效。仓库 Settings → Pages 的 Source 是 **GitHub Actions**，自定义域名 `ningcraft.com`。
 
-This theme uses the default code syntax highlighter of jekyll, [Rouge](http://rouge.jneen.net/), which is compatible with Pygments theme so just pick any pygments theme css (e.g. from [here](http://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html) and replace the content of `highlight.less`.
+## 历史说明
 
-
-### Interesting to know more? Checkout the [full user manual](_doc/Manual.md)!
-
-
-Other Resources
----------------
-
-Ports
-- [**Hexo**](https://github.com/Kaijun/hexo-theme-huxblog) by @kaijun
-- [**React-SSR**](https://github.com/LucasIcarus/huxpro.github.io/tree/ssr) by @LucasIcarus
-
-[Starter/Boilerplate](https://github.com/huxpro/huxblog-boilerplate)
-- Out of date. Helps wanted for updating it on par with the main repo
-
-Translation
-- [🇨🇳  中文文档（有点过时）](https://github.com/Huxpro/huxpro.github.io/blob/master/_doc/README.zh.md)
-
-
-License
--------
-
-Apache License 2.0.
-Copyright (c) 2015-present Huxpro
-
-Hux Blog is derived from [Clean Blog Jekyll Theme (MIT License)](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/)
-Copyright (c) 2013-2016 Blackrock Digital LLC.
+本仓库早期是 [Huxpro/huxpro.github.io](https://github.com/Huxpro/huxpro.github.io) 的 fork（Jekyll 主题）。2026-10-11 起切换为纯静态站；旧主题文件已于 2026-10-18 从 `master` 移除——需要找回旧主题，可查看该日期之前的提交历史。

@@ -1,13 +1,8 @@
-_site
-_posts/_draft
-_posts/_archive
-_archive
+# 静态站：没有构建产物，无需忽略构建目录
 node_modules
 .vscode
-*.log
-*.lock
-*.sh
 .DS_Store
-.jekyll-cache
 */.DS_Store
-*/*/.DS_Store
+*.log
+.venv
+__pycache__

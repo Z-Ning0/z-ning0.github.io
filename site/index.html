@@ -96,6 +96,10 @@
   /* 页脚 + 终端彩蛋 */
   footer{border-top:1px solid var(--line);padding:34px 0 60px;font-size:12.5px;color:var(--muted)}
   .foot-row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;letter-spacing:.5px}
+  /* GitHub 活跃痕迹：数据取不到时整条 hidden，不显示「—」 */
+  .gh{text-decoration:none;color:var(--muted);transition:color .2s}
+  .gh:hover{color:var(--accent)}
+  .gh:before{content:"↗ ";opacity:.7}
   .term{margin-top:24px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--tag)}
   .term-bar{display:flex;align-items:center;gap:7px;padding:9px 13px;border-bottom:1px solid var(--line)}
   .term-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
@@ -148,8 +152,8 @@
 
   <section id="posts">
     <div class="sec-head"><h2>文章</h2><a href="#">全部 →</a></div>
-    <a class="post" href="#">
-      <div class="row"><span class="chip">成长</span><time>2026 · 10</time></div>
+    <a class="post" href="posts/qiuzhao.html">
+      <div class="row"><span class="chip">成长</span><time>2025 · 10 · 29</time></div>
       <h3 class="serif">辞职实习到秋招：我怎么熬过那半年</h3>
       <p>去年国庆把实习辞了，全力秋招。回头看，那半年最大的收获不是 offer。</p>
     </a>

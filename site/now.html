@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>现在 · 阿柠</title>
+<meta name="description" content="按提交记的做完的事，以及在维护的项目。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="现在 · 阿柠">
+<meta property="og:description" content="按提交记的做完的事，以及在维护的项目。">
+<meta property="og:image" content="https://ningcraft.com/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17C5 9 9.6 5 16 5s11 4 13 12c-2 8-6.6 12-13 12S5 25 3 17z' fill='%23d9a20c'/%3E%3Cpath d='M12 17c2-1.2 6-1.2 8 0' stroke='%23fbfaf6' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="阿柠 · 长文" href="rss.xml">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="top">
+      <div class="name"><a href="index.html"><svg class="lemon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.2 12.6C3.6 7.2 7.5 4.3 12 4.3s8.4 2.9 9.8 8.3c-1.4 5.4-5.3 8.3-9.8 8.3s-8.4-2.9-9.8-8.3z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="1.5"/><path d="M9 12.6c1.6-.9 4.4-.9 6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.4 5.6c.9-1.9 2.6-2.9 4.6-2.9-.3 2.2-1.7 3.9-3.9 4.4z" fill="currentColor"/></svg>阿柠</a></div>
+      <nav>
+        <a href="now.html">现在</a>
+        <a href="about.html">关于</a>
+        <a href="rss.xml">RSS</a>
+      </nav>
+    </div>
+  </header>
+
+  <article>
+    <h1>现在</h1>
+    <div class="byline mono"><span>2025-12-01 至今 · 396 次提交 · 15 个仓</span></div>
+
+    <h2 class="sec"><span>做完的事</span></h2>
+    <ul class="events">
+        <li class="q" id="e-2026-11-16-edfa9"><span class="ed mono">11-16</span><span class="quote">pytest 绿了，不代表验的是用例说的那件事。</span><span class="src mono">— spec-fidelity · README</span></li>
+        <li id="e-2026-11-15-621bd"><span class="ed mono">11-15</span><span class="et">用例从 6 条扩到 25 条，覆盖率 20.0% → 96.0%</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-11-13-ebc2a"><span class="ed mono">11-13</span><span class="et">修好周五采集任务：恢复 UTF-8 BOM，改成多仓采集</span><span class="er mono">okr-worklog</span></li>
+        <li id="e-2026-11-12-0fd74"><span class="ed mono">11-12</span><span class="et">数据库查询加超时与错误处理，不让一次慢查询卡死整批</span><span class="er mono">testcases-generate</span></li>
+        <li id="e-2026-11-12-5d2c8"><span class="ed mono">11-12</span><span class="et">审计步骤改为先合并跑 7 条用例，避免用对抗域日记审出假的「证据不足」</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-11-12-8b3c4"><span class="ed mono">11-12</span><span class="et">xlsx 导出时间戳基线统一为固定值</span><span class="er mono">testcases-generate</span></li>
+        <li id="e-2026-10-24-c2822"><span class="ed mono">10-24</span><span class="et">打包可分享网页版：base=&#x27;./&#x27; + 图片路径改 BASE_URL + 单文件内联</span><span class="er mono">zouxikou</span></li>
+        <li id="e-2026-10-24-9de0c"><span class="ed mono">10-24</span><span class="et">加编号桥与覆盖率报告，把 cases/ → tests/ 的断点变成可校验事实</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-10-20-b338d"><span class="ed mono">10-20</span><span class="et">补 VERIFY.md：30 秒 / 3 分钟 / 10 分钟三层验证，外加「本仓不能证明什么」</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-10-19-b220e"><span class="ed mono">10-19</span><span class="et">PRD → 用例契约 → Playwright 执行的保真验证链</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-10-19-acd9f"><span class="ed mono">10-19</span><span class="et">P1 用真跑缺陷替代合成样本</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-09-22-026ba"><span class="ed mono">09-22</span><span class="et">跳转锚点改 git 仓库根，修子目录 cwd 导致 IDE 换工作区</span><span class="er mono">claude-code-win-notify</span></li>
+        <li id="e-2026-09-20-fe25d"><span class="ed mono">09-20</span><span class="et">锚点改用 transcript 会话初始 cwd，修跨仓 cd 漂移</span><span class="er mono">claude-code-win-notify</span></li>
+    </ul>
+
+    <h2 class="sec"><span>在维护的项目</span></h2>
+    <ul class="proj">
+        <li><span class="pname mono">spec-fidelity</span><span class="pwhat">pytest 绿了，不代表验的是用例说的那件事——公开靶子 → PRD → 用例集 → Playwright 代码 → 蒙眼审计</span><span class="pdate mono">11-15</span></li>
+        <li><span class="pname mono">testcases-generate</span><span class="pwhat">从 PRD 分析到测试用例生成的工作流（Claude Code Skills + 飞书 MCP）</span><span class="pdate mono">11-14</span></li>
+        <li><span class="pname mono">okr-worklog</span><span class="pwhat">周报 / 月绩效 / 双月 OKR 的证据库与草稿仓，周五自动采证</span><span class="pdate mono">11-13</span></li>
+        <li><span class="pname mono">zouxikou</span><span class="pwhat">晋商题材跑商肉鸽 · 水墨风 · LayaAir 多端</span><span class="pdate mono">10-24</span></li>
+        <li><span class="pname mono">read-lens</span><span class="pwhat">把外文文章变成带卡壳点注释的中文精读稿</span><span class="pdate mono">10-21</span></li>
+        <li><span class="pname mono">claude-code-win-notify</span><span class="pwhat">Claude Code 的 Windows 通知：任务完成 / 需要授权 / 接口报错，一键跳回 IDE</span><span class="pdate mono">09-22</span></li>
+    </ul>
+  </article>
+
+  <footer>
+    <div class="foot-row"><span>© 2026 阿柠</span><span class="mono">2026-11-17</span></div>
+    <div class="foot-row"><span><a href="about.html">关于</a> · <a href="now.html">现在</a></span><span><a href="rss.xml">RSS</a> · <a href="https://github.com/Z-Ning0">GitHub</a></span></div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>阿柠</title>
+  <link>https://ningcraft.com/</link>
+  <description>深圳 · 软件测试工程师。长文与做完的事。</description>
+  <language>zh-CN</language>
+  <atom:link href="https://ningcraft.com/rss.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>「pytest 绿了，不代表验的是用例说的那件事。」— spec-fidelity · README</title>
+    <link>https://ningcraft.com/now.html#e-2026-11-16-edfa9</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-16-edfa9</guid>
+    <pubDate>Mon, 16 Nov 2026 12:00:00 -0000</pubDate>
+    <description>「pytest 绿了，不代表验的是用例说的那件事。」— spec-fidelity · README</description>
+  </item>
+  <item>
+    <title>用例从 6 条扩到 25 条，覆盖率 20.0% → 96.0%</title>
+    <link>https://ningcraft.com/now.html#e-2026-11-15-621bd</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-15-621bd</guid>
+    <pubDate>Sun, 15 Nov 2026 12:00:00 -0000</pubDate>
+    <description>用例从 6 条扩到 25 条，覆盖率 20.0% → 96.0%</description>
+  </item>
+  <item>
+    <title>修好周五采集任务：恢复 UTF-8 BOM，改成多仓采集</title>
+    <link>https://ningcraft.com/now.html#e-2026-11-13-ebc2a</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-13-ebc2a</guid>
+    <pubDate>Fri, 13 Nov 2026 12:00:00 -0000</pubDate>
+    <description>修好周五采集任务：恢复 UTF-8 BOM，改成多仓采集</description>
+  </item>
+  <item>
+    <title>数据库查询加超时与错误处理，不让一次慢查询卡死整批</title>
+    <link>https://ningcraft.com/now.html#e-2026-11-12-0fd74</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-12-0fd74</guid>
+    <pubDate>Thu, 12 Nov 2026 12:00:00 -0000</pubDate>
+    <description>数据库查询加超时与错误处理，不让一次慢查询卡死整批</description>
+  </item>
+  <item>
+    <title>审计步骤改为先合并跑 7 条用例，避免用对抗域日记审出假的「证据不足」</title>
+    <link>https://ningcraft.com/now.html#e-2026-11-12-5d2c8</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-12-5d2c8</guid>
+    <pubDate>Thu, 12 Nov 2026 12:00:00 -0000</pubDate>
+    <description>审计步骤改为先合并跑 7 条用例，避免用对抗域日记审出假的「证据不足」</description>
+  </item>
+  <item>
+    <title>xlsx 导出时间戳基线统一为固定值</title>
+    <link>https://ningcraft.com/now.html#e-2026-11-12-8b3c4</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-12-8b3c4</guid>
+    <pubDate>Thu, 12 Nov 2026 12:00:00 -0000</pubDate>
+    <description>xlsx 导出时间戳基线统一为固定值</description>
+  </item>
+  <item>
+    <title>打包可分享网页版：base=&#x27;./&#x27; + 图片路径改 BASE_URL + 单文件内联</title>
+    <link>https://ningcraft.com/now.html#e-2026-10-24-c2822</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-10-24-c2822</guid>
+    <pubDate>Sat, 24 Oct 2026 12:00:00 -0000</pubDate>
+    <description>打包可分享网页版：base=&#x27;./&#x27; + 图片路径改 BASE_URL + 单文件内联</description>
+  </item>
+  <item>
+    <title>加编号桥与覆盖率报告，把 cases/ → tests/ 的断点变成可校验事实</title>
+    <link>https://ningcraft.com/now.html#e-2026-10-24-9de0c</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-10-24-9de0c</guid>
+    <pubDate>Sat, 24 Oct 2026 12:00:00 -0000</pubDate>
+    <description>加编号桥与覆盖率报告，把 cases/ → tests/ 的断点变成可校验事实</description>
+  </item>
+  <item>
+    <title>补 VERIFY.md：30 秒 / 3 分钟 / 10 分钟三层验证，外加「本仓不能证明什么」</title>
+    <link>https://ningcraft.com/now.html#e-2026-10-20-b338d</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-10-20-b338d</guid>
+    <pubDate>Tue, 20 Oct 2026 12:00:00 -0000</pubDate>
+    <description>补 VERIFY.md：30 秒 / 3 分钟 / 10 分钟三层验证，外加「本仓不能证明什么」</description>
+  </item>
+  <item>
+    <title>PRD → 用例契约 → Playwright 执行的保真验证链</title>
+    <link>https://ningcraft.com/now.html#e-2026-10-19-b220e</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-10-19-b220e</guid>
+    <pubDate>Mon, 19 Oct 2026 12:00:00 -0000</pubDate>
+    <description>PRD → 用例契约 → Playwright 执行的保真验证链</description>
+  </item>
+  <item>
+    <title>P1 用真跑缺陷替代合成样本</title>
+    <link>https://ningcraft.com/now.html#e-2026-10-19-acd9f</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-10-19-acd9f</guid>
+    <pubDate>Mon, 19 Oct 2026 12:00:00 -0000</pubDate>
+    <description>P1 用真跑缺陷替代合成样本</description>
+  </item>
+  <item>
+    <title>跳转锚点改 git 仓库根，修子目录 cwd 导致 IDE 换工作区</title>
+    <link>https://ningcraft.com/now.html#e-2026-09-22-026ba</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-09-22-026ba</guid>
+    <pubDate>Tue, 22 Sep 2026 12:00:00 -0000</pubDate>
+    <description>跳转锚点改 git 仓库根，修子目录 cwd 导致 IDE 换工作区</description>
+  </item>
+  <item>
+    <title>锚点改用 transcript 会话初始 cwd，修跨仓 cd 漂移</title>
+    <link>https://ningcraft.com/now.html#e-2026-09-20-fe25d</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-09-20-fe25d</guid>
+    <pubDate>Sun, 20 Sep 2026 12:00:00 -0000</pubDate>
+    <description>锚点改用 transcript 会话初始 cwd，修跨仓 cd 漂移</description>
+  </item>
+  <item>
+    <title>辞职实习到秋招：我怎么熬过那半年</title>
+    <link>https://ningcraft.com/posts/qiuzhao.html</link>
+    <guid isPermaLink="true">https://ningcraft.com/posts/qiuzhao.html</guid>
+    <pubDate>Wed, 29 Oct 2025 09:00:00 -0000</pubDate>
+    <description>去年国庆辞了实习，把秋招全押在线下双选会。2300 字。</description>
+  </item>
+</channel>
+</rss>

@@ -1,320 +1,55 @@
-<!doctype html>
-<html lang="zh-CN" data-theme="work">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>阿柠下班了吗</title>
-<meta name="description" content="下班后学 AI、写代码、顺便生活 —— 阿柠的个人站。">
-<meta property="og:title" content="阿柠下班了吗">
-<meta property="og:description" content="下班后学 AI、写代码、顺便生活">
+<title>阿柠 · 软件测试工程师</title>
+<meta name="description" content="深圳 · 软件测试工程师。按提交记做完的事。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ningcraft.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23d9a441'/%3E%3Cpath d='M16 3a13 13 0 0 1 0 26z' fill='%23f0cf7a'/%3E%3C/svg%3E">
-<style>
-  /* ── 两套主题：work（工作日冷白） / off（下班暖米） ─────────────
-     只换 CSS 变量，所以切换是一行 JS 改 data-theme，颜色自带过渡。 */
-  html{--pad:32px}
-  html[data-theme="work"]{
-    --bg:#ffffff; --ink:#191919; --muted:#8b8b8b; --line:#e4e4e4;
-    --accent:#2f6f9f; --tag:#f0f4f8; --tag-ink:#3b6d94;
-  }
-  html[data-theme="off"]{
-    --bg:#faf6f0; --ink:#2e2a26; --muted:#8d8279; --line:#e8ded1;
-    --accent:#c2662f; --tag:#fbeee2; --tag-ink:#a2603a;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);
-    font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased;
-    transition:background .45s ease,color .45s ease}
-  .serif{font-family:Georgia,"Songti SC","Source Han Serif SC",SimSun,serif}
-  .mono{font-family:Consolas,"Cascadia Mono",ui-monospace,monospace}
-  a{color:inherit}
-  .wrap{max-width:820px;margin:0 auto;padding:0 var(--pad)}
-
-  /* 顶部 */
-  header{border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 0;flex-wrap:wrap}
-  .brand{font-size:19px;letter-spacing:.5px;display:flex;align-items:center;gap:10px}
-  .brand .lemon{width:13px;height:13px;border-radius:50%;background:var(--accent);
-    transition:background .45s ease;flex:0 0 auto}
-  .brand i{font-style:normal;color:var(--accent);transition:color .45s ease}
-  .navright{display:flex;align-items:center;gap:22px}
-  nav ul{display:flex;gap:24px;list-style:none}
-  nav a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
-  nav a:hover{color:var(--ink)}
-  /* 「下班了」开关 */
-  .switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer;border:1px solid var(--line);
-    background:transparent;color:var(--muted);font:inherit;font-size:13px;padding:7px 14px;border-radius:999px;
-    transition:border-color .45s,color .2s}
-  .switch:hover{color:var(--ink)}
-  .switch .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);transition:background .45s}
-
-  /* 状态行：由 JS 按访问时间生成 */
-  .status{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);
-    padding:22px 0 0;letter-spacing:.3px}
-  .status .ping{width:7px;height:7px;border-radius:50%;background:var(--accent);position:relative;flex:0 0 auto}
-  .status .ping:after{content:"";position:absolute;inset:-5px;border-radius:50%;
-    border:1px solid var(--accent);opacity:.5;animation:ripple 2.4s ease-out infinite}
-  @keyframes ripple{0%{transform:scale(.6);opacity:.55}100%{transform:scale(1.5);opacity:0}}
-
-  /* 主视觉 */
-  .hero{padding:64px 0 76px;position:relative;overflow:hidden}
-  .hero h1{font-size:46px;line-height:1.5;font-weight:400;letter-spacing:1px;position:relative}
-  .hero p{margin-top:26px;font-size:16px;line-height:2;color:var(--muted);max-width:34em;position:relative}
-  .hero .sig{margin-top:34px;font-size:13px;color:var(--muted);letter-spacing:1px;position:relative}
-  /* 光标微光：桌面端跟随鼠标的一点暖光，不抢内容 */
-  .hero .glow{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s}
-  .hero:hover .glow{opacity:.55}
-  .hero .glow:before{content:"";position:absolute;width:420px;height:420px;left:calc(var(--mx,50%) - 210px);
-    top:calc(var(--my,50%) - 210px);border-radius:50%;
-    background:radial-gradient(circle,var(--accent) 0%,transparent 62%);opacity:.10}
-
-  /* 区块 */
-  section{padding:56px 0;border-top:1px solid var(--line)}
-  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:34px}
-  .sec-head h2{font-size:15px;font-weight:400;letter-spacing:4px;color:var(--muted)}
-  .sec-head a{font-size:13px;color:var(--accent);text-decoration:none}
-  .post{display:block;padding:24px 0;border-bottom:1px solid var(--line);text-decoration:none}
-  .post:last-child{border-bottom:0}
-  .post .row{display:flex;align-items:center;gap:10px}
-  .post .chip{font-size:11.5px;background:var(--tag);color:var(--tag-ink);padding:3px 10px;border-radius:999px;
-    transition:background .45s}
-  .post time{font-size:12px;color:var(--muted);letter-spacing:1px}
-  .post h3{font-size:22px;font-weight:400;margin:11px 0 9px;line-height:1.5;transition:color .2s}
-  .post:hover h3{color:var(--accent)}
-  .post p{font-size:14px;color:var(--muted);line-height:1.9}
-  .works{display:grid;grid-template-columns:1fr 1fr;gap:0;
-    border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  .work{border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:28px 26px;min-height:150px;text-decoration:none;display:block}
-  .work b{display:block;font-size:17px;font-weight:400;margin-bottom:10px}
-  .work:hover b{color:var(--accent)}
-  .work span{font-size:13px;color:var(--muted);line-height:1.8}
-
-  /* 页脚 + 终端彩蛋 */
-  footer{border-top:1px solid var(--line);padding:34px 0 60px;font-size:12.5px;color:var(--muted)}
-  .foot-row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;letter-spacing:.5px}
-  /* GitHub 活跃痕迹：数据取不到时整条 hidden，不显示「—」 */
-  .gh{text-decoration:none;color:var(--muted);transition:color .2s}
-  .gh:hover{color:var(--accent)}
-  .gh:before{content:"↗ ";opacity:.7}
-  .term{margin-top:24px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--tag)}
-  .term-bar{display:flex;align-items:center;gap:7px;padding:9px 13px;border-bottom:1px solid var(--line)}
-  .term-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-  .term-bar span{margin-left:6px;font-size:11.5px;letter-spacing:.5px}
-  .term-body{padding:13px;height:112px;overflow-y:auto;font-size:12.5px;line-height:1.85}
-  .term-body .out{white-space:pre-wrap;word-break:break-all}
-  .term-body .cmd{color:var(--ink)}
-  .term-in{display:flex;align-items:center;gap:8px;padding:0 13px 13px;font-size:12.5px}
-  .term-in input{flex:1;border:0;background:transparent;color:var(--ink);font:inherit;outline:none}
-  .caret{width:8px;height:16px;background:var(--accent);animation:blink 1.05s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
-
-  /* 打卡动画（点「下班了」时） */
-  .pop{position:fixed;font-size:22px;pointer-events:none;z-index:99;animation:pop 1.05s ease-out forwards}
-  @keyframes pop{0%{transform:translateY(0) scale(.6);opacity:0}
-    22%{opacity:1}100%{transform:translateY(-86px) scale(1.05);opacity:0}}
-
-  @media (max-width:640px){
-    html{--pad:20px}
-    .hero{padding:44px 0 54px}
-    .hero h1{font-size:31px;line-height:1.62}
-    .hero p{font-size:15px}
-    .works{grid-template-columns:1fr}
-    nav ul{display:none}
-    .post h3{font-size:19px}
-  }
-</style>
+<meta property="og:title" content="阿柠 · 软件测试工程师">
+<meta property="og:description" content="深圳 · 软件测试工程师。按提交记做完的事。">
+<meta property="og:image" content="https://ningcraft.com/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17C5 9 9.6 5 16 5s11 4 13 12c-2 8-6.6 12-13 12S5 25 3 17z' fill='%23d9a20c'/%3E%3Cpath d='M12 17c2-1.2 6-1.2 8 0' stroke='%23fbfaf6' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="阿柠 · 长文" href="rss.xml">
 </head>
 <body>
-
-<header><div class="wrap"><nav>
-  <div class="brand serif"><span class="lemon"></span>阿柠<i>下班</i>了吗</div>
-  <div class="navright">
-    <ul><li><a href="#posts">文章</a></li><li><a href="#works">作品</a></li><li><a href="#about">关于</a></li></ul>
-    <button class="switch" id="switch" type="button" aria-pressed="false">
-      <span class="dot"></span><span id="switch-label">下班了</span>
-    </button>
-  </div>
-</nav></div></header>
-
 <div class="wrap">
-  <div class="status"><span class="ping"></span><span id="status">下班后学 AI、写代码、顺便生活</span></div>
+  <header>
+    <div class="top">
+      <div class="name"><a href="index.html"><svg class="lemon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.2 12.6C3.6 7.2 7.5 4.3 12 4.3s8.4 2.9 9.8 8.3c-1.4 5.4-5.3 8.3-9.8 8.3s-8.4-2.9-9.8-8.3z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="1.5"/><path d="M9 12.6c1.6-.9 4.4-.9 6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.4 5.6c.9-1.9 2.6-2.9 4.6-2.9-.3 2.2-1.7 3.9-3.9 4.4z" fill="currentColor"/></svg>阿柠</a></div>
+      <nav>
+        <a href="now.html">现在</a>
+        <a href="about.html">关于</a>
+        <a href="rss.xml">RSS</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="hero" id="hero">
-    <div class="glow"></div>
-    <h1 class="serif">下班后学 AI、<br>写代码、顺便生活</h1>
-    <p>这里放我下班后的东西：学到哪了、写了什么、踩了哪些坑。没什么体系，就是一点点记下来。</p>
-    <div class="sig" id="about">阿柠 · 深圳</div>
-  </div>
-
-  <section id="posts">
-    <div class="sec-head"><h2>文章</h2><a href="#">全部 →</a></div>
-    <a class="post" href="posts/qiuzhao.html">
-      <div class="row"><span class="chip">成长</span><time>2025 · 10 · 29</time></div>
-      <h3 class="serif">辞职实习到秋招：我怎么熬过那半年</h3>
-      <p>去年国庆把实习辞了，全力秋招。回头看，那半年最大的收获不是 offer。</p>
-    </a>
-    <a class="post" href="#">
-      <div class="row"><span class="chip">读技术</span><time>2026 · 10</time></div>
-      <h3 class="serif">GitHub 为什么要为 AI agent 重写 Git 底层</h3>
-      <p>单月 7.38 亿次提交、同比 5 倍。这不是教程，是一条趋势信号。</p>
-    </a>
+  <section class="stream">
+    <h2 class="sec"><span>做完的事</span><a href="now.html">全部</a></h2>
+    <ul class="events">
+        <li class="q" id="e-2026-11-16-edfa9"><span class="ed mono">11-16</span><span class="quote">pytest 绿了，不代表验的是用例说的那件事。</span><span class="src mono">— spec-fidelity · README</span></li>
+        <li id="e-2026-11-15-621bd"><span class="ed mono">11-15</span><span class="et">用例从 6 条扩到 25 条，覆盖率 20.0% → 96.0%</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-11-13-ebc2a"><span class="ed mono">11-13</span><span class="et">修好周五采集任务：恢复 UTF-8 BOM，改成多仓采集</span><span class="er mono">okr-worklog</span></li>
+        <li id="e-2026-11-12-0fd74"><span class="ed mono">11-12</span><span class="et">数据库查询加超时与错误处理，不让一次慢查询卡死整批</span><span class="er mono">testcases-generate</span></li>
+        <li id="e-2026-11-12-5d2c8"><span class="ed mono">11-12</span><span class="et">审计步骤改为先合并跑 7 条用例，避免用对抗域日记审出假的「证据不足」</span><span class="er mono">spec-fidelity</span></li>
+        <li id="e-2026-11-12-8b3c4"><span class="ed mono">11-12</span><span class="et">xlsx 导出时间戳基线统一为固定值</span><span class="er mono">testcases-generate</span></li>
+    </ul>
   </section>
 
-  <section id="works">
-    <div class="sec-head"><h2>作品</h2><a href="#">全部 →</a></div>
-    <div class="works">
-      <a class="work" href="#"><b class="serif">走西口</b><span>一个肉鸽小游戏 · 在改数值和派活之间反复横跳</span></a>
-      <a class="work" href="#"><b class="serif">read-lens</b><span>代码阅读工具 · 给自己用，也给别人看</span></a>
-    </div>
+  <section>
+    <h2 class="sec"><span>长文</span></h2>
+    <a class="entry" href="posts/qiuzhao.html">
+      <span class="yr mono">2025</span>
+      <span class="mid"><span class="ttl">辞职实习到秋招：我怎么熬过那半年</span><span class="meta">2300 字 · 约 9 分钟</span></span>
+    </a>
   </section>
 
   <footer>
-    <div class="foot-row">
-      <span>© 2026 阿柠 · ningcraft.com</span>
-      <span id="days">本站开张第 1 天</span>
-    </div>
-
-    <!-- 终端彩蛋：敲 help 看命令 -->
-    <div class="term">
-      <div class="term-bar mono"><i></i><i></i><i></i><span>aning@ningcraft</span></div>
-      <div class="term-body mono" id="term-out">
-        <div class="out">敲 <b>help</b> 看能干什么（一共有 7 个命令）</div>
-      </div>
-      <div class="term-in mono">
-        <span>~$</span><input id="term-in" autocomplete="off" spellcheck="false" aria-label="终端">
-        <span class="caret"></span>
-      </div>
-    </div>
+    <div class="foot-row"><span>© 2026 阿柠</span><span class="mono">2026-11-17</span></div>
+    <div class="foot-row"><span><a href="about.html">关于</a> · <a href="now.html">现在</a></span><span><a href="rss.xml">RSS</a> · <a href="https://github.com/Z-Ning0">GitHub</a></span></div>
   </footer>
 </div>
-
-<script>
-/* ─────────────────────────────────────────────────────────────
-   这一段是页面里所有「活」的地方，都是零依赖纯 JS。
-   改文案/改工作时间，只动下面这几个常量就行。
-   ───────────────────────────────────────────────────────────── */
-(function () {
-  var WORK_START = 9 * 60 + 30;   // 上班 09:30
-  var WORK_END   = 18 * 60 + 30;  // 下班 18:30
-  var OPEN_DAY   = new Date(2026, 9, 11);  // 本站开张日（月份从 0 数：9 = 10 月）
-
-  var $ = function (id) { return document.getElementById(id); };
-
-  /* 1. 时间格式化：137 分钟 → "2 小时 17 分" */
-  function dur(m) {
-    var h = Math.floor(m / 60), mm = m % 60;
-    return h ? (h + " 小时 " + mm + " 分") : (mm + " 分");
-  }
-
-  /* 2. 根据访问者本地时间，判断他/我现在处于什么状态 */
-  function statusOf(now) {
-    var day = now.getDay();                       // 0 = 周日
-    var m = now.getHours() * 60 + now.getMinutes();
-    if (day === 0 || day === 6) return { off: true, text: "周末 · 不上班" };
-    if (m < WORK_START) return { off: false, text: "还没上班 · 距上班 " + dur(WORK_START - m) };
-    if (m < WORK_END)   return { off: false, text: "上班中 · 距下班 " + dur(WORK_END - m) };
-    return { off: true, text: "下班了 · 已下班 " + dur(m - WORK_END) };
-  }
-
-  /* 3. 状态行 + 「本站开张第 N 天」 */
-  function tick() {
-    var now = new Date();
-    var s = statusOf(now);
-    $("status").textContent = s.text;
-    document.body.dataset.off = s.off ? "1" : "0";
-    var days = Math.floor((now - OPEN_DAY) / 86400000) + 1;
-    $("days").textContent = "本站开张第 " + days + " 天";
-    return s;
-  }
-
-  /* 4. 「下班了」开关：只改 data-theme，颜色由 CSS 变量过渡 */
-  var SWITCH_KEY = "aning-offwork";
-  function applyTheme(off, remember) {
-    document.documentElement.dataset.theme = off ? "off" : "work";
-    $("switch-label").textContent = off ? "回上班" : "下班了";
-    $("switch").setAttribute("aria-pressed", off ? "true" : "false");
-    if (remember) { try { localStorage.setItem(SWITCH_KEY, off ? "1" : "0"); } catch (e) {} }
-  }
-
-  /* 5. 打卡动画：点一下「下班了」撒几颗柠檬 */
-  function lemons(x, y) {
-    for (var i = 0; i < 5; i++) {
-      var el = document.createElement("span");
-      el.className = "pop";
-      el.textContent = "🍋";
-      el.style.left = (x + (i - 2) * 26) + "px";
-      el.style.top = y + "px";
-      el.style.animationDelay = (i * 55) + "ms";
-      document.body.appendChild(el);
-      (function (n) { setTimeout(function () { n.remove(); }, 1300 + n.animationDelay); })(el);
-    }
-  }
-
-  /* 6. 终端彩蛋 */
-  var CMDS = {
-    help: "可用：whoami / ls / cat about.md / date / pwd / sudo 下班 / clear",
-    whoami: "阿柠（写代码的柠）· 测试工程师 · 下班后学 AI、写代码、顺便生活",
-    ls: "文章/  作品/  关于/  下班了",
-    "cat about.md": "在深圳写代码，白天做测试，晚上学 AI。这个站是我下班后的地方。",
-    date: function () { return new Date().toLocaleString("zh-CN"); },
-    pwd: "/home/aning/ningcraft",
-    "sudo 下班": "权限不足：老板还在（而且现在不是上班时间，你本来就在下班 🍋）"
-  };
-
-  function type(line, cls) {
-    var box = $("term-out");
-    var d = document.createElement("div");
-    d.className = "out " + (cls || "");
-    d.textContent = line;
-    box.appendChild(d);
-    box.scrollTop = box.scrollHeight;
-    while (box.children.length > 40) box.removeChild(box.firstChild);
-  }
-
-  $("term-in").addEventListener("keydown", function (e) {
-    if (e.key !== "Enter") return;
-    var raw = this.value.trim();
-    this.value = "";
-    if (!raw) return;
-    type("~$ " + raw, "cmd");
-    if (raw === "clear") { $("term-out").innerHTML = ""; return; }
-    var hit = CMDS[raw];
-    if (typeof hit === "function") hit = hit();
-    type(hit || ("command not found: " + raw + "（试试 help）"));
-  });
-
-  /* 7. 光标微光（只对鼠标设备生效；触屏不动） */
-  var hero = $("hero");
-  if (window.matchMedia("(hover:hover)").matches) {
-    hero.addEventListener("mousemove", function (e) {
-      var r = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", (e.clientX - r.left) + "px");
-      hero.style.setProperty("--my", (e.clientY - r.top) + "px");
-    });
-  }
-
-  /* 8. 初始化：URL 带 ?theme=off|work 可强制（方便分享/截图），否则读记忆；
-        没有记忆就按时间自动决定 —— 工作日 18:30 后自动亮"下班"色 */
-  var forced = new URLSearchParams(location.search).get("theme");
-  var saved = null;
-  try { saved = localStorage.getItem(SWITCH_KEY); } catch (e) {}
-  var s = tick();
-  applyTheme(forced ? forced === "off" : (saved !== null ? saved === "1" : s.off), false);
-
-  $("switch").addEventListener("click", function (e) {
-    var nowOff = document.documentElement.dataset.theme !== "off";
-    applyTheme(nowOff, true);
-    if (nowOff) {
-      var r = this.getBoundingClientRect();
-      lemons(r.left + r.width / 2 - 12, r.bottom + 6);
-    }
-  });
-
-  setInterval(tick, 30000);   // 状态行每 30 秒自己刷新（倒计时会走）
-})();
-</script>
-</body></html>
+</body>
+</html>

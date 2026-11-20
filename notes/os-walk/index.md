@@ -20,7 +20,6 @@ with TemporaryDirectory() as tmp:
     ├── /sub
     │   └── b.txt
     └── a.txt
-
 ```
 
 猜测：不会<br>

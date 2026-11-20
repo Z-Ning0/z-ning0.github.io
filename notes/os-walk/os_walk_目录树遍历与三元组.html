@@ -1,0 +1,46 @@
+<svg width="100%" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <title>os.walk 遍历目录树并产出三元组</title>
+  <desc>左侧是一棵示例目录树，按访问顺序编号；右侧展示 os.walk 每一步 yield 的 (dirpath, dirnames, filenames) 三元组。</desc>
+
+  <text x="40" y="30" font-size="13" font-weight="500" fill="#0C447C">目录树（按访问顺序编号）</text>
+  <text x="360" y="30" font-size="13" font-weight="500" fill="#0C447C">os.walk 每次 yield 的三元组</text>
+  <line x1="340" y1="42" x2="340" y2="330" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 4"/>
+
+  <g style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#0C447C">
+    <text x="40" y="62">① requirements/</text>
+    <text x="60" y="84">② 63.foo/</text>
+    <text x="84" y="150">③ sub/</text>
+    <text x="60" y="194">④ 64.bar/</text>
+  </g>
+  <g style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#5F5E5A">
+    <text x="84" y="106">prd.md</text>
+    <text x="84" y="128">testcases.csv</text>
+    <text x="104" y="172">testcases_b2.csv</text>
+    <text x="84" y="216">testcases.csv</text>
+  </g>
+
+  <g>
+    <rect x="360" y="46" width="280" height="62" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="372" y="61" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" font-weight="500" fill="#0C447C">① dirpath = "requirements"</text>
+    <text x="372" y="77" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">dirnames = ["63.foo", "64.bar"]</text>
+    <text x="372" y="93" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">filenames = []</text>
+  </g>
+  <g>
+    <rect x="360" y="116" width="280" height="62" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="372" y="131" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" font-weight="500" fill="#0C447C">② dirpath = "requirements/63.foo"</text>
+    <text x="372" y="147" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">dirnames = ["sub"]</text>
+    <text x="372" y="163" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">filenames = ["prd.md", "testcases.csv"]</text>
+  </g>
+  <g>
+    <rect x="360" y="186" width="280" height="62" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="372" y="201" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" font-weight="500" fill="#0C447C">③ dirpath = "requirements/63.foo/sub"</text>
+    <text x="372" y="217" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">dirnames = []</text>
+    <text x="372" y="233" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">filenames = ["testcases_b2.csv"]</text>
+  </g>
+  <g>
+    <rect x="360" y="256" width="280" height="62" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+    <text x="372" y="271" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" font-weight="500" fill="#0C447C">④ dirpath = "requirements/64.bar"</text>
+    <text x="372" y="287" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">dirnames = []</text>
+    <text x="372" y="303" dominant-baseline="central" style="font-family:ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#444441">filenames = ["testcases.csv"]</text>
+  </g>
+</svg>

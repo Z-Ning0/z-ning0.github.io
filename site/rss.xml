@@ -7,6 +7,13 @@
   <language>zh-CN</language>
   <atom:link href="https://ningcraft.com/rss.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>os.walk 遍历目录树并产出三元组</title>
+    <link>https://ningcraft.com/now.html#e-2026-11-21-d5730</link>
+    <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-21-d5730</guid>
+    <pubDate>Sat, 21 Nov 2026 12:00:00 -0000</pubDate>
+    <description>os.walk 遍历目录树并产出三元组</description>
+  </item>
+  <item>
     <title>「pytest 绿了，不代表验的是用例说的那件事。」— spec-fidelity · README</title>
     <link>https://ningcraft.com/now.html#e-2026-11-16-edfa9</link>
     <guid isPermaLink="true">https://ningcraft.com/now.html#e-2026-11-16-edfa9</guid>

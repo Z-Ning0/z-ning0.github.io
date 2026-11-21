@@ -13,7 +13,3 @@ python -m http.server 8000 --bind 127.0.0.1 --directory site
 ```
 
 打开 <http://127.0.0.1:8000/>。
-
-## 历史
-
-早期站点使用 [Huxpro 的 Jekyll 主题](https://github.com/Huxpro/huxpro.github.io)，感谢原作者与贡献者。旧 `master` 保留完整历史；当前静态站在 `main` 维护。

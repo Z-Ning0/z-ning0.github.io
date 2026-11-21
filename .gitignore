@@ -1,0 +1,8 @@
+# 静态站：没有构建产物，无需忽略构建目录
+node_modules
+.vscode
+.DS_Store
+*/.DS_Store
+*.log
+.venv
+__pycache__

@@ -1,0 +1,38 @@
+name: Deploy static site to Pages
+
+# 说明：本仓库已从 Jekyll 主题（hux）切换为纯静态站 —— 站点源文件在 site/，
+# 由本 workflow 直接上传 artifact 部署。旧的 jekyll.yml 已删除。
+# 回滚：把 site/ 目录删掉、恢复 .github/workflows/jekyll.yml（在 git 历史里）即可。
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

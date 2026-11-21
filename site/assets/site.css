@@ -139,7 +139,7 @@ article h1 {
 .body pre code { background: none; padding: 0; font-size: 13px; }
 .body blockquote { border-left: 3px solid var(--lemon-soft); padding-left: 14px; color: var(--muted); margin: 0 0 1.3em; }
 .body figure { margin: 1.7em 0; }
-.body figure img { width: 100%; display: block; border: 1px solid var(--line); }
+.body figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
 .body a { color: var(--lemon-ink); border-bottom: 1px solid var(--lemon-soft); }
 .body a:hover { border-bottom-color: var(--lemon); }
 .pager {

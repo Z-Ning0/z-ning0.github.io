@@ -11,15 +11,14 @@
 <meta property="og:image" content="https://ningcraft.com/assets/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17C5 9 9.6 5 16 5s11 4 13 12c-2 8-6.6 12-13 12S5 25 3 17z' fill='%23d9a20c'/%3E%3Cpath d='M12 17c2-1.2 6-1.2 8 0' stroke='%23fbfaf6' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/home.css">
-<script src="assets/home.js" defer></script>
+<link rel="stylesheet" href="assets/experiment-desk.css">
 <link rel="alternate" type="application/rss+xml" title="阿柠 · 长文" href="rss.xml">
 </head>
-<body class="home-c">
+<body class="experiment-desk">
 <div class="wrap">
   <header>
     <div class="top">
-      <div class="name"><a href="index.html"><svg class="lemon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.2 12.6C3.6 7.2 7.5 4.3 12 4.3s8.4 2.9 9.8 8.3c-1.4 5.4-5.3 8.3-9.8 8.3s-8.4-2.9-9.8-8.3z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="1.5"/><path d="M9 12.6c1.6-.9 4.4-.9 6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.4 5.6c.9-1.9 2.6-2.9 4.6-2.9-.3 2.2-1.7 3.9-3.9 4.4z" fill="currentColor"/></svg>阿柠</a></div>
+      <div class="name"><a href="index.html"><svg class="lemon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.2 12.6C3.6 7.2 7.5 4.3 12 4.3s8.4 2.9 9.8 8.3c-1.4 5.4-5.3 8.3-9.8 8.3s-8.4-2.9-9.8-8.3z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="1.5"/><path d="M9 12.6c1.6-.9 4.4-.9 6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.4 5.6c.9-1.9 2.6-2.9 4.6-2.9-.3 2.2-1.7 3.9-3.9 4.4z" fill="currentColor"/></svg>阿柠下班了吗</a></div>
       <nav>
         <a href="now.html">现在</a>
         <a href="about.html">关于</a>
@@ -28,38 +27,46 @@
     </div>
   </header>
 
-  <main class="home">
-    <section class="walk" aria-labelledby="walk-title" data-selected="demo">
-      <div class="walk-intro">
-        <p class="walk-byline">学习短记 · Python</p>
-        <h1 id="walk-title"><code>os.walk</code> 遍历目录树并产出三元组</h1>
-        <a class="walk-link" href="notes/os-walk/">阅读短记</a>
-      </div>
-      <div class="walk-panel">
-        <div class="walk-diagram">
-          <figure class="walk-tree">
-            <figcaption>目录树</figcaption>
-            <pre><code><span data-directory="demo">demo/</span>
-<span>├── a.txt</span>
-<span data-directory="sub">└── sub/</span>
-<span>    └── b.txt</span></code></pre>
-          </figure>
-          <figure class="walk-output">
-            <figcaption>实际输出</figcaption>
-            <pre><code><span data-directory="demo">. [&#x27;sub&#x27;] [&#x27;a.txt&#x27;]</span>
-<span data-directory="sub">sub [] [&#x27;b.txt&#x27;]</span></code></pre>
-          </figure>
+<main id="main">
+  <div class="desk-intro">
+    <p>下班后学 AI、写代码、顺便生活</p>
+    <nav aria-label="直接浏览">
+      <a href="posts/qiuzhao.html">长文</a>
+      <a href="now.html">做完的事</a>
+    </nav>
+  </div>
+  <div class="desk-layout">
+    <section class="desk-feature" aria-labelledby="desk-question">
+      <p class="desk-label"><span>实验桌</span><span>学习短记 · Python</span></p>
+      <h1 id="desk-question">第一轮会看见 <code>b.txt</code> 吗？</h1>
+      <p class="desk-note-title">os.walk 遍历目录树并产出三元组</p>
+      <div class="desk-sheet">
+        <figure class="desk-tree">
+          <figcaption>目录树</figcaption>
+          <pre><code>demo/
+├── a.txt
+└── sub/
+    └── b.txt</code></pre>
+        </figure>
+        <div class="desk-reveal">
+          <details>
+            <summary><span>查看实际输出</span><span class="desk-toggle" aria-hidden="true"></span></summary>
+            <div class="desk-result"><p>猜测：不会</p><pre><code>. [&#x27;sub&#x27;] [&#x27;a.txt&#x27;]
+sub [] [&#x27;b.txt&#x27;]</code></pre></div>
+          </details>
         </div>
-        <div class="walk-controls" role="group" aria-label="选择目录" hidden>
-          <button type="button" data-directory="demo" aria-pressed="true">demo/</button>
-          <button type="button" data-directory="sub" aria-pressed="false">sub/</button>
-        </div>
       </div>
+      <a class="desk-note-link" href="notes/os-walk/">阅读短记</a>
     </section>
-
-  <section class="stream">
-    <h2 class="sec"><span>做完的事</span><a href="now.html">全部</a></h2>
-    <ul class="events">
+    <div class="desk-index">
+      <section class="desk-longform" aria-labelledby="desk-long-title">
+        <h2 id="desk-long-title" class="desk-index-label">长文</h2>
+        <a class="desk-long-link" href="posts/qiuzhao.html">辞职实习到秋招：我怎么熬过那半年</a>
+        <p>2300 字 · 约 9 分钟</p>
+      </section>
+      <section class="desk-stream" aria-labelledby="desk-stream-title">
+        <div class="desk-stream-heading"><h2 id="desk-stream-title" class="desk-index-label">做完的事</h2><a href="now.html">全部</a></div>
+        <ul class="events">
         <li id="e-2026-11-21-d5730"><span class="ed mono">11-21</span><span class="et"><a class="lnk" href="notes/os-walk/">os.walk 遍历目录树并产出三元组 ↗</a></span></li>
         <li class="q" id="e-2026-11-16-edfa9"><span class="ed mono">11-16</span><span class="quote">pytest 绿了，不代表验的是用例说的那件事。</span><span class="src mono">— spec-fidelity · README</span></li>
         <li id="e-2026-11-15-621bd"><span class="ed mono">11-15</span><span class="et">用例从 6 条扩到 25 条，覆盖率 20.0% → 96.0%</span><span class="er mono">spec-fidelity</span></li>
@@ -67,17 +74,11 @@
         <li id="e-2026-11-12-0fd74"><span class="ed mono">11-12</span><span class="et">数据库查询加超时与错误处理，不让一次慢查询卡死整批</span><span class="er mono">testcases-generate</span></li>
         <li id="e-2026-11-12-5d2c8"><span class="ed mono">11-12</span><span class="et">审计步骤改为先合并跑 7 条用例，避免用对抗域日记审出假的「证据不足」</span><span class="er mono">spec-fidelity</span></li>
         <li id="e-2026-11-12-8b3c4"><span class="ed mono">11-12</span><span class="et">xlsx 导出时间戳基线统一为固定值</span><span class="er mono">testcases-generate</span></li>
-    </ul>
-  </section>
-
-  <section class="longform">
-    <h2 class="sec"><span>长文</span></h2>
-    <a class="entry" href="posts/qiuzhao.html">
-      <span class="yr mono">2025</span>
-      <span class="mid"><span class="ttl">辞职实习到秋招：我怎么熬过那半年</span><span class="meta">2300 字 · 约 9 分钟</span></span>
-    </a>
-  </section>
-  </main>
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
 
   <footer>
     <div class="foot-row"><span>© 2026 阿柠</span><span class="mono">2026-11-23</span></div>

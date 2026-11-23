@@ -11,9 +11,11 @@
 <meta property="og:image" content="https://ningcraft.com/assets/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 17C5 9 9.6 5 16 5s11 4 13 12c-2 8-6.6 12-13 12S5 25 3 17z' fill='%23d9a20c'/%3E%3Cpath d='M12 17c2-1.2 6-1.2 8 0' stroke='%23fbfaf6' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/home.css">
+<script src="assets/home.js" defer></script>
 <link rel="alternate" type="application/rss+xml" title="阿柠 · 长文" href="rss.xml">
 </head>
-<body>
+<body class="home-c">
 <div class="wrap">
   <header>
     <div class="top">
@@ -25,6 +27,35 @@
       </nav>
     </div>
   </header>
+
+  <main class="home">
+    <section class="walk" aria-labelledby="walk-title" data-selected="demo">
+      <div class="walk-intro">
+        <p class="walk-byline">学习短记 · Python</p>
+        <h1 id="walk-title"><code>os.walk</code> 遍历目录树并产出三元组</h1>
+        <a class="walk-link" href="notes/os-walk/">阅读短记</a>
+      </div>
+      <div class="walk-panel">
+        <div class="walk-diagram">
+          <figure class="walk-tree">
+            <figcaption>目录树</figcaption>
+            <pre><code><span data-directory="demo">demo/</span>
+<span>├── a.txt</span>
+<span data-directory="sub">└── sub/</span>
+<span>    └── b.txt</span></code></pre>
+          </figure>
+          <figure class="walk-output">
+            <figcaption>实际输出</figcaption>
+            <pre><code><span data-directory="demo">. [&#x27;sub&#x27;] [&#x27;a.txt&#x27;]</span>
+<span data-directory="sub">sub [] [&#x27;b.txt&#x27;]</span></code></pre>
+          </figure>
+        </div>
+        <div class="walk-controls" role="group" aria-label="选择目录" hidden>
+          <button type="button" data-directory="demo" aria-pressed="true">demo/</button>
+          <button type="button" data-directory="sub" aria-pressed="false">sub/</button>
+        </div>
+      </div>
+    </section>
 
   <section class="stream">
     <h2 class="sec"><span>做完的事</span><a href="now.html">全部</a></h2>
@@ -39,16 +70,17 @@
     </ul>
   </section>
 
-  <section>
+  <section class="longform">
     <h2 class="sec"><span>长文</span></h2>
     <a class="entry" href="posts/qiuzhao.html">
       <span class="yr mono">2025</span>
       <span class="mid"><span class="ttl">辞职实习到秋招：我怎么熬过那半年</span><span class="meta">2300 字 · 约 9 分钟</span></span>
     </a>
   </section>
+  </main>
 
   <footer>
-    <div class="foot-row"><span>© 2026 阿柠</span><span class="mono">2026-11-17</span></div>
+    <div class="foot-row"><span>© 2026 阿柠</span><span class="mono">2026-11-23</span></div>
     <div class="foot-row"><span><a href="about.html">关于</a> · <a href="now.html">现在</a></span><span><a href="rss.xml">RSS</a> · <a href="https://github.com/Z-Ning0">GitHub</a></span></div>
   </footer>
 </div>

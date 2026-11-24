@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>游戏挂到子目录后，为什么场景图 404？ · 阿柠</title>
+<meta name="description" content="游戏部署到网站的子目录后，页面能打开，场景背景图却返回 404。下面用一张自制 SVG 复现：同一张图，一次用 &lt;img&gt; 加载，一次用 CSS 背景加载。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏挂到子目录后，为什么场景图 404？ · 阿柠">
+<meta property="og:description" content="游戏部署到网站的子目录后，页面能打开，场景背景图却返回 404。下面用一张自制 SVG 复现：同一张图，一次用 &lt;img&gt; 加载，一次用 CSS 背景加载。">
+<meta property="og:image" content="https://ningcraft.com/notes/css-relative-url-404/share.png">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="阿柠 · 长文" href="../../rss.xml">
+<meta property="og:image:alt" content="游戏部署到网站的子目录后，页面能打开，场景背景图却返回 404。下面用一张自制 SVG 复现：同一张图，一次用 &lt;img&gt; 加载，一次用 CSS 背景加载。">
+<style>.note details{margin:1.25em 0;padding:14px 16px;border:1px solid var(--line)} .note summary{cursor:pointer;color:var(--lemon-ink)} .note details p{margin:12px 0} .note pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="top">
+      <div class="name"><a href="/" style="gap:8px;line-height:24px"><img src="/assets/logo.svg" width="24" height="24" alt="" style="display:block"><span style="font-size:18px;font-weight:600;white-space:nowrap">阿柠</span></a></div>
+      <nav>
+        <a href="../../now.html">现在</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../rss.xml">RSS</a>
+      </nav>
+    </div>
+  </header>
+<main><article class="note"><h1>游戏挂到子目录后，为什么场景图 404？</h1><div class="byline"><span>学习短记</span></div><div class="body">
+<p>游戏部署到网站的子目录后，页面能打开，场景背景图却返回 404。下面用一张自制 SVG 复现：同一张图，一次用 <code>&lt;img&gt;</code> 加载，一次用 CSS 背景加载。</p>
+<p>页面地址是 <code>/play/demo/</code>，样式表在 <code>/play/demo/assets/site.css</code>。HTML 和 CSS 变量拿到的都是 <code>./images/scene.svg</code>：</p>
+<pre><code class="language-html">&lt;img src=&quot;./images/scene.svg&quot; alt=&quot;&quot;&gt;
+&lt;div class=&quot;scene&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">/* assets/site.css */
+.scene { background-image: var(--scene); }
+</code></pre>
+<pre><code class="language-js">document.querySelector('.scene').style.setProperty(
+  '--scene', 'url(&quot;./images/scene.svg&quot;)'
+);
+</code></pre>
+<details><summary>同一个相对路径，哪条请求会 404？</summary>
+<p>Chrome 实际请求：</p>
+<pre><code class="language-text">200  /play/demo/images/scene.svg
+404  /play/demo/assets/images/scene.svg
+</code></pre>
+<p><code>&lt;img src&gt;</code> 相对页面地址解析。背景图的 <code>url()</code> 则是在样式表通过 <code>var(--scene)</code> 使用时解析，因此相对的是 <code>assets/site.css</code> 所在目录。<strong>即使用 JS 把变量写到了元素上，也不改变这个例子里背景图的解析位置。</strong></p>
+</details>
+<h2>修复：先把地址算出来，再交给 CSS</h2>
+<pre><code class="language-js">const path = './images/scene.svg';
+const url = new URL(path, document.baseURI).href;
+document.querySelector('.scene').style.setProperty(
+  '--scene', `url(&quot;${url}&quot;)`
+);
+</code></pre>
+<p>改完后，Chrome 不再请求 <code>assets/images/scene.svg</code>；背景图和 <code>&lt;img&gt;</code> 都指向返回 200 的 <code>/play/demo/images/scene.svg</code>。查同类问题时，先看 Network 里<strong>实际请求的完整地址</strong>，不要只比较代码里的路径字符串。</p>
+<p><a href="https://www.w3.org/TR/css-variables-1/">参考：W3C CSS Custom Properties 规范</a></p>
+</div></article></main>
+
+  <footer>
+    <div class="foot-row"><span>© 2026 阿柠</span><span class="mono">2026-11-24</span></div>
+    <div class="foot-row"><span><a href="../../about.html">关于</a> · <a href="../../now.html">现在</a></span><span><a href="../../rss.xml">RSS</a> · <a href="https://github.com/Z-Ning0">GitHub</a></span></div>
+  </footer>
+</div>
+</body>
+</html>

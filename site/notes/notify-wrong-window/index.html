@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>通知为什么跳回了错误的 Cursor 窗口？ · 阿柠</title>
+<meta name="description" content="同时开着两个项目。Claude Code 会话从 repo-a 启动，中途执行 cd 去看 repo-b。任务结束后，通知应该带你回 repo-a，却打开了 repo-b。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通知为什么跳回了错误的 Cursor 窗口？ · 阿柠">
+<meta property="og:description" content="同时开着两个项目。Claude Code 会话从 repo-a 启动，中途执行 cd 去看 repo-b。任务结束后，通知应该带你回 repo-a，却打开了 repo-b。">
+<meta property="og:image" content="https://ningcraft.com/notes/notify-wrong-window/share.png">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="阿柠 · 长文" href="../../rss.xml">
+<meta property="og:image:alt" content="同时开着两个项目。Claude Code 会话从 repo-a 启动，中途执行 cd 去看 repo-b。任务结束后，通知应该带你回 repo-a，却打开了 repo-b。">
+<style>.note details{margin:1.25em 0;padding:14px 16px;border:1px solid var(--line)} .note summary{cursor:pointer;color:var(--lemon-ink)} .note details p{margin:12px 0} .note pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="top">
+      <div class="name"><a href="/" style="gap:8px;line-height:24px"><img src="/assets/logo.svg" width="24" height="24" alt="" style="display:block"><span style="font-size:18px;font-weight:600;white-space:nowrap">阿柠</span></a></div>
+      <nav>
+        <a href="../../now.html">现在</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../rss.xml">RSS</a>
+      </nav>
+    </div>
+  </header>
+<main><article class="note"><h1>通知为什么跳回了错误的 Cursor 窗口？</h1><div class="byline"><span>学习短记</span></div><div class="body">
+<p>同时开着两个项目。Claude Code 会话从 <code>repo-a</code> 启动，中途执行 <code>cd</code> 去看 <code>repo-b</code>。任务结束后，通知应该带你回 <code>repo-a</code>，却打开了 <code>repo-b</code>。</p>
+<h2>第一次修复：不直接用当前目录</h2>
+<p>最初，通知把事件里的 <code>cwd</code>（当前工作目录）拼进 Cursor 的跳转链接。Agent 如果从 <code>repo-a</code> 进了 <code>repo-a/src</code>，链接也跟着变成了子目录，Cursor 可能会把它当成另一个工作区打开。</p>
+<p>第一次修复用 <code>git rev-parse --show-toplevel</code> 把当前目录归一成仓库根。这样，<code>repo-a/src</code> 和 <code>repo-a</code> 就会跳到同一个地方。</p>
+<details><summary>如果 Agent 从 repo-a 切到了 repo-b/src，Git 会给出哪个仓库根？</summary>
+<p><code>repo-b</code>。Git 找的是传给它的目录所在的仓库，并不知道会话从哪儿启动。第一次修复解决了<strong>同仓库内进子目录</strong>，没有解决<strong>跨仓库切换</strong>。</p>
+</details>
+<h2>第二次修复：先找会话是从哪儿启动的</h2>
+<p>从会话记录（transcript）的前 10 行找第一条带 <code>cwd</code> 的记录，再把那个路径交给 Git。找不到记录时，仍回退到通知事件里的当前目录。</p>
+<ul>
+<li><strong>只进子目录：</strong> <code>repo-a/src</code> → 查当前目录得到 <code>repo-a</code>，查会话起点也得到 <code>repo-a</code>。</li>
+<li><strong>切到另一个仓库：</strong> <code>repo-b/src</code> → 查当前目录得到 <code>repo-b</code>（跳错），查会话起点才得到 <code>repo-a</code>。</li>
+</ul>
+<p><strong><code>cwd</code> 回答的是「Agent 现在在哪」，通知需要的是「这段会话属于哪个工作区」。</strong> Git 能把路径归一到仓库根，但前提是先给它正确的路径。</p>
+<p><a href="https://github.com/Z-Ning0/claude-code-win-notify/commit/0d353b69">第一次修复 <code>0d353b69</code></a> · <a href="https://github.com/Z-Ning0/claude-code-win-notify/commit/00ce221d">第二次修复 <code>00ce221d</code></a></p>
+</div></article></main>
+
+  <footer>
+    <div class="foot-row"><span>© 2026 阿柠</span><span class="mono">2026-11-24</span></div>
+    <div class="foot-row"><span><a href="../../about.html">关于</a> · <a href="../../now.html">现在</a></span><span><a href="../../rss.xml">RSS</a> · <a href="https://github.com/Z-Ning0">GitHub</a></span></div>
+  </footer>
+</div>
+</body>
+</html>
